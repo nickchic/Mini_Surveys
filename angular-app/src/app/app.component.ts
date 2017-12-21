@@ -12,8 +12,11 @@ export class AppComponent implements OnInit{
   constructor(private _userService: UserService){ }
 
   ngOnInit() {
-      this._userService.getUserStored()
-      .subscribe(user => console.log('USER', user), error => console.log(error));
+      if(!this._userService.logged_in_user._id){
+          this._userService.getUserStored()
+            .subscribe(user => console.log('USER', user), error => console.log(error));
+      }
+
   }
 
   logout(){

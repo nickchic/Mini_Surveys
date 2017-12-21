@@ -35,7 +35,10 @@ module.exports = {
                 survey.question = request.body.question;
                 survey.options = request.body.options;
                 return survey.save()
-                    .then(()=>console.log('saved'))
+                    .then(survey=>{
+                        console.log('saved');
+                        response.json(survey);
+                    })
             })
             .catch(error => console.log(error))
     },

@@ -30,7 +30,7 @@ export class SurveyService {
             return response.json();
         })
         .catch((error) => {
-            console.log('stored user error', error);
+            console.log('get by survey id error', error);
             return Observable.throw(error);
         })
   }
@@ -41,7 +41,7 @@ export class SurveyService {
           return response.json();
       })
       .catch((error) => {
-          console.log('stored user error', error);
+          console.log('create survey', error);
           return Observable.throw(error);
       })
   }
@@ -52,7 +52,7 @@ export class SurveyService {
             return response.json();
         })
         .catch((error) => {
-            console.log('stored user error', error);
+            console.log('delete error', error);
             return Observable.throw(error);
         })
   }
@@ -63,7 +63,7 @@ export class SurveyService {
             return response.json();
         })
         .catch((error) => {
-            console.log('stored user error', error);
+            console.log('Error editing survey', error);
             return Observable.throw(error);
         })
   }

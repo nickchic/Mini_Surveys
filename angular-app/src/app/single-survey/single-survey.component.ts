@@ -19,21 +19,29 @@ export class SingleSurveyComponent implements OnInit {
 
   ngOnInit() {
 
-
     this.route.paramMap.switchMap(
-      params => this._surveyService.getByID(params.get('id'))
+      params => {
+          console.log('getting param');
+          return this._surveyService.getByID(params.get('id'))
+      }
     )
     .subscribe(
-      survey => this.survey = survey,
-      errorResponse => console.log(errorResponse)
+      survey => {
+          console.log('getting survey');
+          this.survey = survey;
+      },
+      errorResponse => console.log('error getting survey', errorResponse)
     );
   }
 
-  vote(idx: number, survey: Survey){
-    survey.options[idx].votes++;
-    this._surveyService.editSurvey(survey).
+  vote(idx: number){
+    this.survey.options[idx].votes++;
+    this._surveyService.editSurvey(this.survey).
       subscribe(
-        survey => console.log(survey),
+        edited_survey => {
+            console.log('edit success', edited_survey);
+            this.survey = edited_survey;
+        },
         error => console.log(error)
       )
   }
