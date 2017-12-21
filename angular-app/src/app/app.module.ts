@@ -9,13 +9,23 @@ import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 
 import { UserService } from './user.service';
+import { SurveyService } from './survey.service';
+
+import { NewSurveyComponent } from './new-survey/new-survey.component';
+import { AllSurveysComponent } from './all-surveys/all-surveys.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
+import { SingleSurveyComponent } from './single-survey/single-survey.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
-    RegisterComponent
+    RegisterComponent,
+    NewSurveyComponent,
+    AllSurveysComponent,
+    DashboardComponent,
+    SingleSurveyComponent
   ],
   imports: [
     BrowserModule,
@@ -23,7 +33,7 @@ import { UserService } from './user.service';
     HttpModule,
     AppRoutingModule
   ],
-  providers: [UserService],
+  providers: [UserService, SurveyService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

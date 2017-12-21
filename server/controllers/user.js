@@ -3,7 +3,7 @@ var User = mongoose.model('User');
 var bcrypt = require('bcrypt');
 
 module.exports = {
-    show: (request, response) => {
+    index: (request, response) => {
         User.find({})
             .then( (users) => {
                 response.json(users);
@@ -59,9 +59,9 @@ module.exports = {
         })
         .catch(error => console.log(error))
     },
-    getById: (request, response) => {
-        console.log('getbyid', request.body);
-        User.findById(request.body)
+    show: (request, response) => {
+        console.log('Get User By ID', request.params.id);
+        User.findById(request.params.id)
         .then( (user) => {
             response.json(user);
         })

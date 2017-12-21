@@ -22,7 +22,7 @@ export class UserService {
 
     register(user: User): Observable<User>{
         console.log('in reg func');
-        return this._http.post('/users', user)
+        return this._http.post('/api/users', user)
             .map((response) => {
                 console.log('Reg Response', response);
                 return response.json();
@@ -37,14 +37,14 @@ export class UserService {
     }
 
     getAllUsers(){
-        this._http.get('/users').toPromise()
+        this._http.get('/api/users').toPromise()
             .then((users) => this.userObserver.next(users.json()))
             .catch((error) => console.log(error))
     }
 
     login_attempt(user: User): Observable<User>{
         console.log('sending login request');
-        return this._http.post('/login', user)
+        return this._http.post('/api/login', user)
             .map((response) => {
                 console.log('logged in!')
                 return response.json();
@@ -59,7 +59,7 @@ export class UserService {
         console.log('getUserStored');
         if(localStorage.id){
             console.log('id found', localStorage.id);
-            return this._http.post('/user', { _id: localStorage.id })
+            return this._http.get(`/api/user/${ localStorage.id }`)
                 .map((response) => {
                     console.log('set user', this.logged_in_user);
                     this.logged_in_user = response.json();
@@ -69,6 +69,7 @@ export class UserService {
                     console.log('stored user error', error);
                     return Observable.throw(error);
                 })
+
         } else {
             return null;
         }
@@ -79,12 +80,13 @@ export class UserService {
         console.log('in log out func');
         this.logged_in_user = new User();
         localStorage.setItem('id', undefined);
+        this._router.navigateByUrl('/');
     }
 
     login(user: User){
         console.log('in login func');
         this.logged_in_user = user;
-        this._router.navigateByUrl('/listings');
+        this._router.navigateByUrl('/new');
         localStorage.setItem('id', this.logged_in_user._id);
     }
 

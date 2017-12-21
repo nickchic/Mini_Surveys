@@ -1,0 +1,6 @@
+<h2>{{ survey.question }}</h2>
+<div *ngFor='let option of survey.options, let idx = index' class='option'>
+  <h4>{{ option.option }}</h4>
+  <p>Votes: {{ option.votes }}</p>
+  <button (click)='vote(idx, survey)'>Vote!</button>
+</div>

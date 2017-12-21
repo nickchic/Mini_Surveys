@@ -1,0 +1,6 @@
+<div *ngFor='let survey of all_surveys' class='survey'>
+  <h2><a [routerLink]="[ survey._id ]">{{ survey.question }}</a></h2>
+  <p>Created at: {{ survey.createdAt | date }}</p>
+  <p>Made by: {{ survey.user.first_name }}</p>
+  <button *ngIf='survey.user._id == _userService.logged_in_user._id' (click)='delete(survey)'>Delete!</button>
+</div>

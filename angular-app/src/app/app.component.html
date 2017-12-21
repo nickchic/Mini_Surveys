@@ -1,4 +1,7 @@
 <div class="nav">
-    <a [routerLink]="['']">Registration</a>
+    <a *ngIf='!_userService.logged_in_user._id' [routerLink]="['']">Login</a>
+    <a *ngIf='_userService.logged_in_user._id' (click)='logout()' [routerLink]="['']">Log Out</a>
+    <a [routerLink]="['new']">New Survey</a>
+    <a [routerLink]="['surveys']">Surveys</a>
 </div>
 <router-outlet></router-outlet>

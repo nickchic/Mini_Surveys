@@ -20,7 +20,8 @@ var UserSchema = new mongoose.Schema({
             },
             message: "Password failed validation, you must have at least 1 number, uppercase and special character"
         }
-    }
+    },
+    surveys: [{ type: Schema.Types.ObjectId, ref: 'Survey', required: true }]
 },{ timestamps: true })
 
 mongoose.model('User', UserSchema);

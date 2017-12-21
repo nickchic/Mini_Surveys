@@ -1,0 +1,38 @@
+<div *ngIf='_userService.logged_in_user._id'>
+  <form (submit)='newSurvey($event)' #surveyForm='ngForm'>
+    <p>Question</p>
+    <div class='error' *ngIf='question.errors'>
+        <p *ngIf='question.errors.required'>Required</p>
+        <p *ngIf='question.errors.minlength'>Needs to be at least 8 Characters.</p>
+    </div>
+    <input type="text" name="question" [(ngModel)]='survey.question' #question='ngModel' required minlength='8'>
+    <p>Option A</p>
+    <div class='error' *ngIf='option_a.errors'>
+        <p *ngIf='option_a.errors.required'>Required</p>
+        <p *ngIf='option_a.errors.minlength'>Needs to be at least 3 Characters.</p>
+    </div>
+    <input type="text" name="option_a" [(ngModel)]='survey.options[0].option' #option_a='ngModel' required minlength='3'>
+    <p>Option B</p>
+    <div class='error' *ngIf='option_b.errors'>
+        <p *ngIf='option_b.errors.required'>Required</p>
+        <p *ngIf='option_b.errors.minlength'>Needs to be at least 3 Characters.</p>
+    </div>
+    <input type="text" name="option_b" [(ngModel)]='survey.options[1].option' #option_b='ngModel' required minlength='3'>
+    <p>Option C</p>
+    <div class='error' *ngIf='option_c.errors'>
+        <p *ngIf='option_c.errors.required'>Required</p>
+        <p *ngIf='option_c.errors.minlength'>Needs to be at least 3 Characters.</p>
+    </div>
+    <input type="text" name="option_c" [(ngModel)]='survey.options[2].option' #option_c='ngModel' required minlength='3'>
+    <p>Option D</p>
+    <div class='error' *ngIf='option_d.errors'>
+        <p *ngIf='option_d.errors.required'>Required</p>
+        <p *ngIf='option_d.errors.minlength'>Needs to be at least 3 Characters.</p>
+    </div>
+    <input type="text" name="option_d" [(ngModel)]='survey.options[3].option' #option_d='ngModel' required minlength='3'>
+    <input type='submit' [disabled]='!surveyForm.form.valid'/>
+  </form>
+</div>
+<div *ngIf='!_userService.logged_in_user._id'>
+  <p>Log in to add a survey!</p>
+</div>
