@@ -18,13 +18,15 @@ export class SingleSurveyComponent implements OnInit {
   constructor(private router: Router, private route: ActivatedRoute, private _surveyService: SurveyService, private _userService: UserService) { }
 
   ngOnInit() {
-
-
+    console.log('on init')
     this.route.paramMap.switchMap(
       params => this._surveyService.getByID(params.get('id'))
     )
     .subscribe(
-      survey => this.survey = survey,
+      survey => {
+        this.survey = survey
+        console.log('survey!!', survey)
+      },
       errorResponse => console.log(errorResponse)
     );
   }
@@ -33,7 +35,7 @@ export class SingleSurveyComponent implements OnInit {
     survey.options[idx].votes++;
     this._surveyService.editSurvey(survey).
       subscribe(
-        survey => console.log(survey),
+        survey => console.log('survey!!', survey),
         error => console.log(error)
       )
   }

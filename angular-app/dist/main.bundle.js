@@ -688,13 +688,17 @@ var SingleSurveyComponent = (function () {
     }
     SingleSurveyComponent.prototype.ngOnInit = function () {
         var _this = this;
+        console.log('on init');
         this.route.paramMap.switchMap(function (params) { return _this._surveyService.getByID(params.get('id')); })
-            .subscribe(function (survey) { return _this.survey = survey; }, function (errorResponse) { return console.log(errorResponse); });
+            .subscribe(function (survey) {
+            _this.survey = survey;
+            console.log('survey!!', survey);
+        }, function (errorResponse) { return console.log(errorResponse); });
     };
     SingleSurveyComponent.prototype.vote = function (idx, survey) {
         survey.options[idx].votes++;
         this._surveyService.editSurvey(survey).
-            subscribe(function (survey) { return console.log(survey); }, function (error) { return console.log(error); });
+            subscribe(function (survey) { return console.log('survey!!', survey); }, function (error) { return console.log(error); });
     };
     SingleSurveyComponent = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
