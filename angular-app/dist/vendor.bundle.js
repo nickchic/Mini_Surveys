@@ -31991,7 +31991,7 @@ module.exports = g;
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/esm5/core.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_tslib__ = __webpack_require__("../../../../tslib/tslib.es6.js");
 /**
- * @license Angular v5.1.2
+ * @license Angular v5.1.1
  * (c) 2010-2017 Google, Inc. https://angular.io/
  * License: MIT
  */
@@ -35901,13 +35901,6 @@ function getDateTranslation(date, locale, name, width, form, extended) {
             return getLocaleDayPeriods(locale, form, /** @type {?} */ (width))[currentHours_1 < 12 ? 0 : 1];
         case TranslationType.Eras:
             return getLocaleEraNames(locale, /** @type {?} */ (width))[date.getFullYear() <= 0 ? 0 : 1];
-        default:
-            // This default case is not needed by TypeScript compiler, as the switch is exhaustive.
-            // However Closure Compiler does not understand that and reports an error in typed mode.
-            // The `throw new Error` below works around the problem, and the unexpected: never variable
-            // makes sure tsc still checks this code is unreachable.
-            var /** @type {?} */ unexpected = name;
-            throw new Error("unexpected translation type " + unexpected);
     }
 }
 /**
@@ -38486,7 +38479,7 @@ function isPlatformWorkerUi(platformId) {
 /**
  * \@stable
  */
-var VERSION = new __WEBPACK_IMPORTED_MODULE_0__angular_core__["_8" /* Version */]('5.1.2');
+var VERSION = new __WEBPACK_IMPORTED_MODULE_0__angular_core__["_8" /* Version */]('5.1.1');
 
 /**
  * @fileoverview added by tsickle
@@ -38764,7 +38757,7 @@ var VERSION = new __WEBPACK_IMPORTED_MODULE_0__angular_core__["_8" /* Version */
 /* unused harmony export removeSummaryDuplicates */
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_tslib__ = __webpack_require__("../../../../tslib/tslib.es6.js");
 /**
- * @license Angular v5.1.2
+ * @license Angular v5.1.1
  * (c) 2010-2017 Google, Inc. https://angular.io/
  * License: MIT
  */
@@ -39403,7 +39396,7 @@ var Version = /** @class */ (function () {
 /**
  * \@stable
  */
-var VERSION = new Version('5.1.2');
+var VERSION = new Version('5.1.1');
 
 /**
  * @fileoverview added by tsickle
@@ -52515,7 +52508,7 @@ var JIT_SUMMARY_NAME = /NgSummary$/;
 function ngfactoryFilePath(filePath, forceSourceFile) {
     if (forceSourceFile === void 0) { forceSourceFile = false; }
     var /** @type {?} */ urlWithSuffix = splitTypescriptSuffix(filePath, forceSourceFile);
-    return urlWithSuffix[0] + ".ngfactory" + normalizeGenFileSuffix(urlWithSuffix[1]);
+    return urlWithSuffix[0] + ".ngfactory" + urlWithSuffix[1];
 }
 /**
  * @param {?} filePath
@@ -52546,13 +52539,6 @@ function splitTypescriptSuffix(path, forceSourceFile) {
         return [path.substring(0, lastDot), path.substring(lastDot)];
     }
     return [path, ''];
-}
-/**
- * @param {?} srcFileSuffix
- * @return {?}
- */
-function normalizeGenFileSuffix(srcFileSuffix) {
-    return srcFileSuffix === '.tsx' ? '.ts' : srcFileSuffix;
 }
 /**
  * @param {?} fileName
@@ -53874,19 +53860,16 @@ var CompileMetadataResolver = /** @class */ (function () {
     };
     /**
      * @param {?} moduleType
-     * @param {?=} alreadyCollecting
      * @return {?}
      */
     CompileMetadataResolver.prototype.getNgModuleSummary = /**
      * @param {?} moduleType
-     * @param {?=} alreadyCollecting
      * @return {?}
      */
-    function (moduleType, alreadyCollecting) {
-        if (alreadyCollecting === void 0) { alreadyCollecting = null; }
+    function (moduleType) {
         var /** @type {?} */ moduleSummary = /** @type {?} */ (this._loadSummary(moduleType, CompileSummaryKind.NgModule));
         if (!moduleSummary) {
-            var /** @type {?} */ moduleMeta = this.getNgModuleMetadata(moduleType, false, alreadyCollecting);
+            var /** @type {?} */ moduleMeta = this.getNgModuleMetadata(moduleType, false);
             moduleSummary = moduleMeta ? moduleMeta.toSummary() : null;
             if (moduleSummary) {
                 this._summaryCache.set(moduleType, moduleSummary);
@@ -53930,19 +53913,16 @@ var CompileMetadataResolver = /** @class */ (function () {
     /**
      * @param {?} moduleType
      * @param {?=} throwIfNotFound
-     * @param {?=} alreadyCollecting
      * @return {?}
      */
     CompileMetadataResolver.prototype.getNgModuleMetadata = /**
      * @param {?} moduleType
      * @param {?=} throwIfNotFound
-     * @param {?=} alreadyCollecting
      * @return {?}
      */
-    function (moduleType, throwIfNotFound, alreadyCollecting) {
+    function (moduleType, throwIfNotFound) {
         var _this = this;
         if (throwIfNotFound === void 0) { throwIfNotFound = true; }
-        if (alreadyCollecting === void 0) { alreadyCollecting = null; }
         moduleType = resolveForwardRef(moduleType);
         var /** @type {?} */ compileMeta = this._ngModuleCache.get(moduleType);
         if (compileMeta) {
@@ -53977,15 +53957,7 @@ var CompileMetadataResolver = /** @class */ (function () {
                 if (importedModuleType) {
                     if (_this._checkSelfImport(moduleType, importedModuleType))
                         return;
-                    if (!alreadyCollecting)
-                        alreadyCollecting = new Set();
-                    if (alreadyCollecting.has(importedModuleType)) {
-                        _this._reportError(syntaxError(_this._getTypeDescriptor(importedModuleType) + " '" + stringifyType(importedType) + "' is imported recursively by the module '" + stringifyType(moduleType) + "'."), moduleType);
-                        return;
-                    }
-                    alreadyCollecting.add(importedModuleType);
-                    var /** @type {?} */ importedModuleSummary = _this.getNgModuleSummary(importedModuleType, alreadyCollecting);
-                    alreadyCollecting.delete(importedModuleType);
+                    var /** @type {?} */ importedModuleSummary = _this.getNgModuleSummary(importedModuleType);
                     if (!importedModuleSummary) {
                         _this._reportError(syntaxError("Unexpected " + _this._getTypeDescriptor(importedType) + " '" + stringifyType(importedType) + "' imported by the module '" + stringifyType(moduleType) + "'. Please add a @NgModule annotation."), moduleType);
                         return;
@@ -54004,15 +53976,7 @@ var CompileMetadataResolver = /** @class */ (function () {
                     _this._reportError(syntaxError("Unexpected value '" + stringifyType(exportedType) + "' exported by the module '" + stringifyType(moduleType) + "'"), moduleType);
                     return;
                 }
-                if (!alreadyCollecting)
-                    alreadyCollecting = new Set();
-                if (alreadyCollecting.has(exportedType)) {
-                    _this._reportError(syntaxError(_this._getTypeDescriptor(exportedType) + " '" + stringify(exportedType) + "' is exported recursively by the module '" + stringifyType(moduleType) + "'"), moduleType);
-                    return;
-                }
-                alreadyCollecting.add(exportedType);
-                var /** @type {?} */ exportedModuleSummary = _this.getNgModuleSummary(exportedType, alreadyCollecting);
-                alreadyCollecting.delete(exportedType);
+                var /** @type {?} */ exportedModuleSummary = _this.getNgModuleSummary(exportedType);
                 if (exportedModuleSummary) {
                     exportedModules.push(exportedModuleSummary);
                 }
@@ -69171,7 +69135,7 @@ var AotCompiler = /** @class */ (function () {
                 genFileNames.push(summaryForJitFileName(file.fileName, true));
             }
         }
-        var /** @type {?} */ fileSuffix = normalizeGenFileSuffix(splitTypescriptSuffix(file.fileName, true)[1]);
+        var /** @type {?} */ fileSuffix = splitTypescriptSuffix(file.fileName, true)[1];
         file.directives.forEach(function (dirSymbol) {
             var /** @type {?} */ compMeta = /** @type {?} */ ((_this._metadataResolver.getNonNormalizedDirectiveMetadata(dirSymbol))).metadata;
             if (!compMeta.isComponent) {
@@ -69461,7 +69425,7 @@ var AotCompiler = /** @class */ (function () {
      */
     function (srcFileUrl, ngModuleByPipeOrDirective, directives, pipes, ngModules, injectables) {
         var _this = this;
-        var /** @type {?} */ fileSuffix = normalizeGenFileSuffix(splitTypescriptSuffix(srcFileUrl, true)[1]);
+        var /** @type {?} */ fileSuffix = splitTypescriptSuffix(srcFileUrl, true)[1];
         var /** @type {?} */ generatedFiles = [];
         var /** @type {?} */ outputCtx = this._createOutputContext(ngfactoryFilePath(srcFileUrl, true));
         generatedFiles.push.apply(generatedFiles, this._createSummary(srcFileUrl, directives, pipes, ngModules, injectables, outputCtx));
@@ -74091,7 +74055,7 @@ var Extractor = /** @class */ (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_rxjs_operator_share__ = __webpack_require__("../../../../rxjs/_esm5/operator/share.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_rxjs_Subject__ = __webpack_require__("../../../../rxjs/_esm5/Subject.js");
 /**
- * @license Angular v5.1.2
+ * @license Angular v5.1.1
  * (c) 2010-2017 Google, Inc. https://angular.io/
  * License: MIT
  */
@@ -74808,7 +74772,7 @@ var Version = /** @class */ (function () {
 /**
  * \@stable
  */
-var VERSION = new Version('5.1.2');
+var VERSION = new Version('5.1.1');
 
 /**
  * @fileoverview added by tsickle
@@ -91030,7 +90994,7 @@ function transition$$1(stateChangeExpr, steps) {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_rxjs_operator_map__ = __webpack_require__("../../../../rxjs/_esm5/operator/map.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__angular_platform_browser__ = __webpack_require__("../../../platform-browser/esm5/platform-browser.js");
 /**
- * @license Angular v5.1.2
+ * @license Angular v5.1.1
  * (c) 2010-2017 Google, Inc. https://angular.io/
  * License: MIT
  */
@@ -99015,7 +98979,7 @@ var FormBuilder = /** @class */ (function () {
 /**
  * \@stable
  */
-var VERSION = new __WEBPACK_IMPORTED_MODULE_1__angular_core__["_8" /* Version */]('5.1.2');
+var VERSION = new __WEBPACK_IMPORTED_MODULE_1__angular_core__["_8" /* Version */]('5.1.1');
 
 /**
  * @fileoverview added by tsickle
@@ -99249,7 +99213,7 @@ var ReactiveFormsModule = /** @class */ (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_Observable__ = __webpack_require__("../../../../rxjs/_esm5/Observable.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__angular_platform_browser__ = __webpack_require__("../../../platform-browser/esm5/platform-browser.js");
 /**
- * @license Angular v5.1.2
+ * @license Angular v5.1.1
  * (c) 2010-2017 Google, Inc. https://angular.io/
  * License: MIT
  */
@@ -101980,7 +101944,7 @@ var JsonpModule = /** @class */ (function () {
 /**
  * @deprecated use \@angular/common/http instead
  */
-var VERSION = new __WEBPACK_IMPORTED_MODULE_0__angular_core__["_8" /* Version */]('5.1.2');
+var VERSION = new __WEBPACK_IMPORTED_MODULE_0__angular_core__["_8" /* Version */]('5.1.1');
 
 /**
  * @fileoverview added by tsickle
@@ -102046,7 +102010,7 @@ var VERSION = new __WEBPACK_IMPORTED_MODULE_0__angular_core__["_8" /* Version */
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__angular_platform_browser__ = __webpack_require__("../../../platform-browser/esm5/platform-browser.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_tslib__ = __webpack_require__("../../../../tslib/tslib.es6.js");
 /**
- * @license Angular v5.1.2
+ * @license Angular v5.1.1
  * (c) 2010-2017 Google, Inc. https://angular.io/
  * License: MIT
  */
@@ -102701,7 +102665,7 @@ var CachedResourceLoader = /** @class */ (function (_super) {
 /**
  * \@stable
  */
-var VERSION = new __WEBPACK_IMPORTED_MODULE_1__angular_core__["_8" /* Version */]('5.1.2');
+var VERSION = new __WEBPACK_IMPORTED_MODULE_1__angular_core__["_8" /* Version */]('5.1.1');
 
 /**
  * @fileoverview added by tsickle
@@ -102812,7 +102776,7 @@ var platformBrowserDynamic = Object(__WEBPACK_IMPORTED_MODULE_1__angular_core__[
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_core__ = __webpack_require__("../../../core/esm5/core.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_tslib__ = __webpack_require__("../../../../tslib/tslib.es6.js");
 /**
- * @license Angular v5.1.2
+ * @license Angular v5.1.1
  * (c) 2010-2017 Google, Inc. https://angular.io/
  * License: MIT
  */
@@ -108009,7 +107973,7 @@ var By = /** @class */ (function () {
 /**
  * \@stable
  */
-var VERSION = new __WEBPACK_IMPORTED_MODULE_1__angular_core__["_8" /* Version */]('5.1.2');
+var VERSION = new __WEBPACK_IMPORTED_MODULE_1__angular_core__["_8" /* Version */]('5.1.1');
 
 /**
  * @fileoverview added by tsickle
@@ -108143,7 +108107,7 @@ var VERSION = new __WEBPACK_IMPORTED_MODULE_1__angular_core__["_8" /* Version */
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_20__angular_platform_browser__ = __webpack_require__("../../../platform-browser/esm5/platform-browser.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_21_rxjs_operator_filter__ = __webpack_require__("../../../../rxjs/_esm5/operator/filter.js");
 /**
- * @license Angular v5.1.2
+ * @license Angular v5.1.1
  * (c) 2010-2017 Google, Inc. https://angular.io/
  * License: MIT
  */
@@ -115520,7 +115484,7 @@ function provideRouterInitializer() {
 /**
  * \@stable
  */
-var VERSION = new __WEBPACK_IMPORTED_MODULE_1__angular_core__["_8" /* Version */]('5.1.2');
+var VERSION = new __WEBPACK_IMPORTED_MODULE_1__angular_core__["_8" /* Version */]('5.1.1');
 
 /**
  * @fileoverview added by tsickle

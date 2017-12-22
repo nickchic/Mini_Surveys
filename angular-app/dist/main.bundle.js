@@ -209,8 +209,10 @@ var AppComponent = (function () {
         this.title = 'app';
     }
     AppComponent.prototype.ngOnInit = function () {
-        this._userService.getUserStored()
-            .subscribe(function (user) { return console.log('USER', user); }, function (error) { return console.log(error); });
+        if (!this._userService.logged_in_user._id) {
+            this._userService.getUserStored()
+                .subscribe(function (user) { return console.log('USER', user); }, function (error) { return console.log(error); });
+        }
     };
     AppComponent.prototype.logout = function () {
         this._userService.logout();
@@ -648,7 +650,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/single-survey/single-survey.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<h2>{{ survey.question }}</h2>\n<div *ngFor='let option of survey.options, let idx = index' class='option'>\n  <h4>{{ option.option }}</h4>\n  <p>Votes: {{ option.votes }}</p>\n  <button (click)='vote(idx, survey)'>Vote!</button>\n</div>\n"
+module.exports = "<h2>{{ survey.question }}</h2>\n<div *ngFor='let option of survey.options, let idx = index' class='option'>\n  <h4>{{ option.option }}</h4>\n  <p>Votes: {{ option.votes }}</p>\n  <button (click)='vote(idx)'>Vote!</button>\n</div>\n"
 
 /***/ }),
 
@@ -688,6 +690,7 @@ var SingleSurveyComponent = (function () {
     }
     SingleSurveyComponent.prototype.ngOnInit = function () {
         var _this = this;
+<<<<<<< HEAD
         console.log('on init');
         this.route.paramMap.switchMap(function (params) { return _this._surveyService.getByID(params.get('id')); })
             .subscribe(function (survey) {
@@ -699,6 +702,25 @@ var SingleSurveyComponent = (function () {
         survey.options[idx].votes++;
         this._surveyService.editSurvey(survey).
             subscribe(function (survey) { return console.log('survey!!', survey); }, function (error) { return console.log(error); });
+=======
+        this.route.paramMap.switchMap(function (params) {
+            console.log('getting param');
+            return _this._surveyService.getByID(params.get('id'));
+        })
+            .subscribe(function (survey) {
+            console.log('getting survey');
+            _this.survey = survey;
+        }, function (errorResponse) { return console.log('error getting survey', errorResponse); });
+    };
+    SingleSurveyComponent.prototype.vote = function (idx) {
+        var _this = this;
+        this.survey.options[idx].votes++;
+        this._surveyService.editSurvey(this.survey).
+            subscribe(function (edited_survey) {
+            console.log('edit success', edited_survey);
+            _this.survey = edited_survey;
+        }, function (error) { return console.log(error); });
+>>>>>>> 96025ad3f1296b6f46c966d637d0d534a4394431
     };
     SingleSurveyComponent = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
@@ -760,7 +782,7 @@ var SurveyService = (function () {
             return response.json();
         })
             .catch(function (error) {
-            console.log('stored user error', error);
+            console.log('get by survey id error', error);
             return __WEBPACK_IMPORTED_MODULE_2_Rxjs__["Observable"].throw(error);
         });
     };
@@ -770,7 +792,7 @@ var SurveyService = (function () {
             return response.json();
         })
             .catch(function (error) {
-            console.log('stored user error', error);
+            console.log('create survey', error);
             return __WEBPACK_IMPORTED_MODULE_2_Rxjs__["Observable"].throw(error);
         });
     };
@@ -780,7 +802,7 @@ var SurveyService = (function () {
             return response.json();
         })
             .catch(function (error) {
-            console.log('stored user error', error);
+            console.log('delete error', error);
             return __WEBPACK_IMPORTED_MODULE_2_Rxjs__["Observable"].throw(error);
         });
     };
@@ -790,7 +812,7 @@ var SurveyService = (function () {
             return response.json();
         })
             .catch(function (error) {
-            console.log('stored user error', error);
+            console.log('Error editing survey', error);
             return __WEBPACK_IMPORTED_MODULE_2_Rxjs__["Observable"].throw(error);
         });
     };
