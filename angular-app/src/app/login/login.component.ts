@@ -16,15 +16,28 @@ export class LoginComponent implements OnInit {
     constructor(private _userService: UserService) { }
 
     ngOnInit() {
+        if(this._userService.logged_in() && !this._userService.logged_in_user){
+            this._userService.getUserStored()
+                .subscribe(
+                    user => {
+                        this.user = user;
+                    },
+                    errorResponse => this.error = errorResponse.json()
+                );
+        }
     }
 
 
     login_attempt(event: Event){
         event.preventDefault();
         console.log('login attempt')
-        this._userService.login_attempt(this.user)
+        this._userService.login(this.user)
             .subscribe(
-                user => this._userService.login(user),
+                user => {
+                    console.log('cool beans')
+                    this._userService.login_success(user);
+                    this.user = new User();
+                },
                 errorResponse => this.error = errorResponse.json()
             );
     }
@@ -32,7 +45,11 @@ export class LoginComponent implements OnInit {
     logout(event: Event){
         event.preventDefault();
         console.log('log out')
-        this._userService.logout();
+        this._userService.logout()
+        .subscribe(
+            response => console.log(response),
+            errorResponse => console.log(errorResponse.json())
+        );
     }
 
 }

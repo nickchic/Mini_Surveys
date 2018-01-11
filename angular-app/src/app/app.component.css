@@ -1,3 +1,19 @@
-.error {
-    color: red;
+/* -- Style -- */
+#outlet {
+    margin: 0 auto;
+    padding: 0;
+    width: 1000px;
+    background-color: #ffffff;
+    min-height: 100vh;
+}
+
+#bg {
+    background-size: 100vh;
+    background-color: #4e7837;
+    min-height: 100vh;
+    background-repeat: repeat-x;
+}
+
+#container{
+    min-height: 100vh;
 }

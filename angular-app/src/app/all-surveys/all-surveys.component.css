@@ -1,4 +1,31 @@
 .survey {
-  padding: 10px;
-  border: solid 1px black;
+  padding: 0 10px 35px;
+  border-bottom: solid 1px #4e7837;
+  margin-bottom: 40px;
+
+}
+
+ .title a{
+    text-decoration: none;
+    color: #4e7837;
+ }
+
+.option {
+    display: inline-block;
+    padding-right: 10%;
+    font-size: 1.2em;
+}
+
+.options_container{
+    margin: 10px 0 7px;
+}
+
+.vote_see {
+    width: 25%;
+    margin: 10px auto 0;
+    text-align: center;
+}
+
+.info {
+    font-size: 0.8em;
 }

@@ -1,5 +1,8 @@
 export class Option {
     option: string;
     votes: number;
-    constructor(){   }
+    constructor(){
+        this.option = '';
+        this.votes = 0;
+     }
 }

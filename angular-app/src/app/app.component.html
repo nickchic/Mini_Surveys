@@ -1,7 +1,8 @@
-<div class="nav">
-    <a *ngIf='!_userService.logged_in_user._id' [routerLink]="['']">Login</a>
-    <a *ngIf='_userService.logged_in_user._id' (click)='logout()' [routerLink]="['']">Log Out</a>
-    <a [routerLink]="['new']">New Survey</a>
-    <a [routerLink]="['surveys']">Surveys</a>
+<div id='container'>
+    <app-nav></app-nav>
+    <div id='bg'>
+        <div id='outlet'>
+            <router-outlet></router-outlet>
+        </div>
+    </div>
 </div>
-<router-outlet></router-outlet>

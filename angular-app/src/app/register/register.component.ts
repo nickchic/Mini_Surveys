@@ -16,7 +16,7 @@ export class RegisterComponent implements OnInit {
     confirm_password: string;
 
     users: User[] = [];
-    emailError: any = {};
+    emailError: any;
 
 
     constructor(private _userService: UserService) { }

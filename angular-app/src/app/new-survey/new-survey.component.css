@@ -1,3 +1,8 @@
-.error {
-  color: red;
+.delete_button {
+    font-size: 0.7em;
+    letter-spacing: 0.1em;
+
+}
+#new_form{
+    width:50%;
 }

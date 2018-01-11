@@ -4,6 +4,7 @@ import { Survey } from '../survey';
 import { SurveyService } from '../survey.service';
 import { User } from '../user';
 import { UserService } from '../user.service';
+import { Option } from '../option';
 import 'rxjs/add/operator/switchMap';
 
 @Component({
@@ -14,6 +15,9 @@ import 'rxjs/add/operator/switchMap';
 export class SingleSurveyComponent implements OnInit {
 
   survey: Survey = new Survey();
+  results: Option[] = [];
+  voted: boolean;
+  currentVote: number;
 
   constructor(private router: Router, private route: ActivatedRoute, private _surveyService: SurveyService, private _userService: UserService) { }
 
@@ -25,19 +29,40 @@ export class SingleSurveyComponent implements OnInit {
     .subscribe(
       survey => {
         this.survey = survey
+        this.fillResults();
         console.log('survey!!', survey)
       },
       errorResponse => console.log(errorResponse)
     );
+
+
   }
 
-  vote(idx: number, survey: Survey){
-    survey.options[idx].votes++;
-    this._surveyService.editSurvey(survey).
+  fillResults():void {
+      this.results = this.survey.options.sort(
+          (a: Option, b: Option) => {
+              if(a.votes > b.votes) {
+                  return -1;
+              } else {
+                  return 1;
+              }
+          })
+  }
+
+  vote(){
+    this.survey.options[this.currentVote].votes++;
+    this._surveyService.editSurvey(this.survey).
       subscribe(
-        survey => console.log('survey!!', survey),
+        survey => {
+            console.log('survey!!', survey)
+            this.voted = true;
+        },
         error => console.log(error)
       )
+  }
+
+  changeVote(idx: number){
+      if(!this.voted){ this.currentVote = idx; }
   }
 
 }

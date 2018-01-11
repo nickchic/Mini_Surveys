@@ -1,6 +1,63 @@
 .option {
-  padding: 10px;
-  border: solid black 1px;
-  display: inline-block;
-  width: 300px;
+  padding: 10px 0;
+  display: block;
+  width: 80%;
+}
+
+.top{
+    font-size: 1.5em;
+    font-weight: bold;
+}
+
+.result{
+    margin-bottom: 10px;
+}
+
+.title {
+    margin-bottom: 10px;
+}
+
+#results, #question {
+    display: inline-block;
+    vertical-align: top;
+}
+
+
+#results {
+    width:35%;
+    padding-left: 10%;
+}
+
+#question {
+    width:50%;
+    border-right: solid 1px #8dc63f;
+}
+
+.checkbox{
+    position:relative;
+    width:20px;
+    height:20px;
+    border:solid 1px black;
+    display: inline-block;
+    cursor: pointer;
+}
+
+.check{
+    position:absolute;
+    bottom:-3px;
+    left:-6px;
+}
+.option_text{
+    display: inline-block;
+    vertical-align: super;
+    margin-left: 5%;
+}
+
+.vote_button {
+    display: block;
+    margin-top: 10px;
+}
+
+.thank_you{
+    margin-top: 10px;
 }

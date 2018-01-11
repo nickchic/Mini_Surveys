@@ -1,6 +1,13 @@
-<div *ngFor='let survey of all_surveys' class='survey'>
-  <h2><a [routerLink]="[ survey._id ]">{{ survey.question }}</a></h2>
-  <p>Created at: {{ survey.createdAt | date }}</p>
-  <p>Made by: {{ survey.user.first_name }}</p>
-  <button *ngIf='survey.user._id == _userService.logged_in_user._id' (click)='delete(survey)'>Delete!</button>
+<div class='padding_4p'>
+    <div *ngFor='let survey of all_surveys' class='survey'>
+        <h1 class='title'><a [routerLink]="[ survey._id ]">{{ survey.question }}</a></h1>
+        <p class='info'>Posted by: {{ survey.user.first_name }} {{ survey.user.last_name }} - {{ survey.createdAt | date }}</p>
+        <div class='options_container'>
+            <p *ngFor='let option of survey.options' class='option'>
+                {{ option.option }}
+            </p>
+        </div>
+        <a [routerLink]="[ survey._id ]"><button class='vote_see'>Vote & See Results</button></a>
+        <button *ngIf='survey.user._id == _userService.logged_in_user._id' (click)='delete(survey)'>Delete!</button>
+    </div>
 </div>

@@ -1,0 +1,13 @@
+<div id="nav-container">
+    <div id='nav'>
+        <a [routerLink]="['']"><img id='logo' src='assets/img/mini_survey_logo.png' alt='logo'/></a>
+        <div id='links'>
+            <a *ngIf='!_userService.logged_in()' [routerLink]="['login']">Login</a>
+            <a *ngIf='!_userService.logged_in()' [routerLink]="['reg']">Register</a>
+            <a *ngIf='_userService.logged_in()' (click)='logout()' [routerLink]="['']">Log Out</a>
+            <a [routerLink]="['new']">New Survey</a>
+            <a [routerLink]="['surveys']">Surveys</a>
+        </div>
+    </div>
+
+</div>

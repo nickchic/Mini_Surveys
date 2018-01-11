@@ -1,1 +1,207 @@
-/* You can add global styles to this file, and also import other style files */
+/* -- RESET -- */
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+body {
+	line-height: 1;
+}
+ol, ul {
+	list-style: none;
+}
+blockquote, q {
+	quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '';
+	content: none;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+
+html{
+	min-height: 100%;
+}
+
+body, app-root, router-outlet  {
+	height: 100%;
+}
+
+.ng-scope{
+	min-height: 100%;
+}
+
+
+
+/* -- FONTS FACE -- */
+
+@font-face {
+  font-family: 'HelveticaNeueLTStd-Lt';
+  src: url('./assets/fonts/HelveticaNeueLTStd-Lt.otf');
+  src: local('./assets/fonts/HelveticaNeueLTStd-Lt.otf');
+}
+
+@font-face {
+  font-family: 'AGaramondPro-Bold';
+  src: url('./assets/fonts/AGaramondPro-Bold.otf');
+  src: local('./assets/fonts/AGaramondPro-Bold.otf');
+}
+
+@font-face {
+  font-family: 'AGaramondPro-Regular';
+  src: url('./assets/fonts/AGaramondPro-Regular.otf');
+  src: local('./assets/fonts/AGaramondPro-Regular.otf');
+}
+
+/* -- FONTS -- */
+
+h1 {
+	font-family: 'AGaramondPro-Bold', Georgia, serif;
+	font-size: 2em;
+	color: #4e7837;
+}
+
+h2 {
+	font-family: 'AGaramondPro-Bold', Georgia, serif;
+	font-weight: bold;
+	font-size: 1.5em;
+	color: #4e7837;
+}
+
+h3 {
+	font-family: 'AGaramondPro-Bold', Georgia, serif;
+	font-weight: bold;
+	font-size: 1.3em;
+	color: #4e7837;
+}
+
+
+p {
+	font-family: 'HelveticaNeueLTStd-Lt', Helvetica, sans-serif;
+	font-size: 1em;
+	line-height: 1.7em;
+}
+
+.error {
+	color: red;
+	font-size: 0.7em;
+	margin-bottom: 0;
+}
+
+button {
+    background-color: #4e7837;
+    color: white;
+    font-family: 'HelveticaNeueLTStd-Lt', Helvetica, sans-serif;
+    font-size: 1.1em;
+    padding: 10px 15px 5px 15px;
+    border: none;
+	cursor: pointer;
+}
+
+.disabled_button {
+	background-color: #92b27d;
+    color: white;
+    font-family: 'HelveticaNeueLTStd-Lt', Helvetica, sans-serif;
+    font-size: 1.1em;
+    padding: 10px 15px 5px 15px;
+    border: none;
+	cursor: not-allowed;
+}
+
+.enabled_button {
+	background-color: #4e7837;
+    color: white;
+    font-family: 'HelveticaNeueLTStd-Lt', Helvetica, sans-serif;
+    font-size: 1.1em;
+    padding: 10px 15px 5px 15px;
+    border: none;
+	cursor: pointer;
+}
+
+/* -- Forms -- */
+
+.input_title {
+	display: inline-block;
+	width: 30%;
+	padding-right: 5px;
+}
+
+.single_input_wrap input{
+	width: 40%;
+}
+
+.single_input_wrap {
+	display: block;
+	margin-bottom: 10px
+}
+
+.form_header{
+	margin-bottom: 15px;
+}
+
+.submit_wrap {
+	width:74%;
+	text-align: right;
+}
+
+.form_half {
+    display: inline-block;
+    width:45%;
+    vertical-align: top;
+}
+
+
+/* -- BASIC LAYOUT -- */
+
+
+.padding_4p {
+    width: 92%;
+    padding: 4% 4% 0;
+}
+
+.center_80 {
+	width: 80%;
+    margin: 0 auto;
+}
+
+.center_90{
+	width: 90%;
+    margin: 0 auto;
+}
+
+.center_95{
+	width: 95%;
+    margin: 0 auto;
+}
+
+/* -- HOME PAGE -- */
+
+#home_reg .padding_4p, #home_login .padding_4p{
+ 	padding: 0;
+	display: inline-block;
+}

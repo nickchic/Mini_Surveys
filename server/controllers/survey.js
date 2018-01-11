@@ -35,19 +35,15 @@ module.exports = {
                 survey.question = request.body.question;
                 survey.options = request.body.options;
                 return survey.save()
-<<<<<<< HEAD
-                    .then(()=>console.log('saved survey'))
-=======
                     .then(survey=>{
                         console.log('saved');
                         response.json(survey);
                     })
->>>>>>> 96025ad3f1296b6f46c966d637d0d534a4394431
             })
             .catch(error => console.log(error))
     },
     show: (request, response) => {
-        Survey.findById(request.params.id)
+        Survey.findById(request.params.id).populate('user').exec()
         .then( (survey) => {
             response.json(survey);
         })

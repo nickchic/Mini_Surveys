@@ -1,6 +1,22 @@
-<h2>{{ survey.question }}</h2>
-<div *ngFor='let option of survey.options, let idx = index' class='option'>
-  <h4>{{ option.option }}</h4>
-  <p>Votes: {{ option.votes }}</p>
-  <button (click)='vote(idx)'>Vote!</button>
+<div class='padding_4p center_80'>
+    <div id='question'>
+        <h1 class='title'>{{ survey.question }}</h1>
+        <p>Posted by: {{ survey.user.first_name | titleize }} {{ survey.user.last_name | titleize }} on {{ survey.createdAt | date}}</p>
+        <div *ngFor='let option of survey.options, let idx = index' class='option'>
+            <div (click)='changeVote(idx)' class='checkbox'>
+                <img *ngIf='idx == currentVote' src='assets/img/check.png' class='check'>
+            </div>
+            <p class='option_text'>{{ option.option }}</p>
+        </div>
+        <button *ngIf='!voted' (click)='vote()' class='vote_button'>Vote!</button>
+        <div *ngIf='voted' class='thank_you'>
+            <p>Thank you for your vote!</p>
+        </div>
+    </div>
+    <div id='results'>
+        <h1 class='title'>Results</h1>
+        <div *ngFor='let option of results, let idx = index' class='result'>
+            <p [ngClass]="{'top': idx == 0}">{{ option.option }} - {{ option.votes }}</p>
+        </div>
+    </div>
 </div>
