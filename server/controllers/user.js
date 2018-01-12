@@ -39,7 +39,7 @@ module.exports = {
         new_user.email = new_user.email.toLowerCase();
         User.create(new_user)
             .then( user => {
-                response.json(user);
+                return completeLogin(request, response, user);
                 console.log('new user!', user);
             })
             .catch(error => {
@@ -85,7 +85,7 @@ module.exports = {
     },
     show: (request, response) => {
         console.log('getbyid', request.body);
-        User.findById(request.body)
+        User.findById(request.body).populate('surveys').exec()
         .then( (user) => {
             response.json(user);
         })

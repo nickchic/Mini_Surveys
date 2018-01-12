@@ -5,7 +5,8 @@
             <a *ngIf='!_userService.logged_in()' [routerLink]="['login']">Login</a>
             <a *ngIf='!_userService.logged_in()' [routerLink]="['reg']">Register</a>
             <a *ngIf='_userService.logged_in()' (click)='logout()' [routerLink]="['']">Log Out</a>
-            <a [routerLink]="['new']">New Survey</a>
+            <a *ngIf='_userService.logged_in()' [routerLink]="['new']">Add Survey</a>
+            <a *ngIf='_userService.logged_in()' [routerLink]="['my_surveys']">My Surveys</a>
             <a [routerLink]="['surveys']">Surveys</a>
         </div>
     </div>

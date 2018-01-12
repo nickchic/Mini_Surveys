@@ -8,6 +8,7 @@ import { RegisterComponent } from './register/register.component';
 import { NewSurveyComponent } from './new-survey/new-survey.component';
 import { AllSurveysComponent } from './all-surveys/all-surveys.component';
 import { SingleSurveyComponent } from './single-survey/single-survey.component';
+import { UserPageComponent } from './user-page/user-page.component';
 
 const routes: Routes = [
     {
@@ -19,6 +20,11 @@ const routes: Routes = [
         path: 'reg',
         pathMatch: 'full',
         component: RegisterComponent
+    },
+    {
+            path: 'my_surveys',
+            pathMatch: 'full',
+            component: UserPageComponent
     },
     {
         path: 'login',

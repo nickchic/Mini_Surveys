@@ -31,3 +31,12 @@
 .info {
     font-size: 0.8em;
 }
+
+#user_header {
+    margin-bottom: 20px;
+    padding: 0 10px 10px;
+}
+
+#user_header h1 {
+    margin-bottom: 5px;
+}

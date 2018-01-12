@@ -25,7 +25,7 @@ exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-b
 
 
 // module
-exports.push([module.i, ".survey {\n  padding: 0 10px 35px;\n  border-bottom: solid 1px #4e7837;\n  margin-bottom: 40px;\n\n}\n\n .title a{\n    text-decoration: none;\n    color: #4e7837;\n }\n\n.option {\n    display: inline-block;\n    padding-right: 10%;\n    font-size: 1.2em;\n}\n\n.options_container{\n    margin: 10px 0 7px;\n}\n\n.vote_see {\n    width: 25%;\n    margin: 10px auto 0;\n    text-align: center;\n}\n\n.info {\n    font-size: 0.8em;\n}\n", ""]);
+exports.push([module.i, ".survey {\n  padding: 0 10px 35px;\n  margin-bottom: 40px;\n}\n\n.bottom_line{\n     border-bottom: solid 1px #4e7837;\n}\n\n .title a{\n    text-decoration: none;\n    color: #4e7837;\n }\n\n.option {\n    display: inline-block;\n    padding-right: 10%;\n    font-size: 1.2em;\n}\n\n.options_container{\n    margin: 10px 0 7px;\n}\n\n.vote_see {\n    width: 25%;\n    margin: 10px auto 0;\n    text-align: center;\n}\n\n.info {\n    font-size: 0.8em;\n}\n", ""]);
 
 // exports
 
@@ -38,7 +38,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/all-surveys/all-surveys.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div class='padding_4p'>\n    <div *ngFor='let survey of all_surveys' class='survey'>\n        <h1 class='title'><a [routerLink]=\"[ survey._id ]\">{{ survey.question }}</a></h1>\n        <p class='info'>Posted by: {{ survey.user.first_name }} {{ survey.user.last_name }} - {{ survey.createdAt | date }}</p>\n        <div class='options_container'>\n            <p *ngFor='let option of survey.options' class='option'>\n                {{ option.option }}\n            </p>\n        </div>\n        <a [routerLink]=\"[ survey._id ]\"><button class='vote_see'>Vote & See Results</button></a>\n        <button *ngIf='survey.user._id == _userService.logged_in_user._id' (click)='delete(survey)'>Delete!</button>\n    </div>\n</div>\n"
+module.exports = "<div class='padding_4p'>\n    <div *ngFor='let survey of all_surveys; let idx = index' class='survey' [ngClass]=\"{'bottom_line': idx < all_surveys.length-1}\">\n        <h1 class='title'><a [routerLink]=\"[ survey._id ]\">{{ survey.question }}</a></h1>\n        <p class='info'>Posted by: {{ survey.user.first_name }} {{ survey.user.last_name }} - {{ survey.createdAt | date }}</p>\n        <div class='options_container'>\n            <p *ngFor='let option of survey.options' class='option'>\n                {{ option.option }}\n            </p>\n        </div>\n        <a [routerLink]=\"[ survey._id ]\"><button class='vote_see'>Vote & See Results</button></a>\n        <button *ngIf='survey.user._id == _userService.logged_in_user._id' (click)='delete(survey)'>Delete!</button>\n    </div>\n</div>\n"
 
 /***/ }),
 
@@ -112,12 +112,14 @@ var AllSurveysComponent = (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__new_survey_new_survey_component__ = __webpack_require__("../../../../../src/app/new-survey/new-survey.component.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__all_surveys_all_surveys_component__ = __webpack_require__("../../../../../src/app/all-surveys/all-surveys.component.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__single_survey_single_survey_component__ = __webpack_require__("../../../../../src/app/single-survey/single-survey.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__user_page_user_page_component__ = __webpack_require__("../../../../../src/app/user-page/user-page.component.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
+
 
 
 
@@ -136,6 +138,11 @@ var routes = [
         path: 'reg',
         pathMatch: 'full',
         component: __WEBPACK_IMPORTED_MODULE_4__register_register_component__["a" /* RegisterComponent */]
+    },
+    {
+        path: 'my_surveys',
+        pathMatch: 'full',
+        component: __WEBPACK_IMPORTED_MODULE_8__user_page_user_page_component__["a" /* UserPageComponent */]
     },
     {
         path: 'login',
@@ -269,12 +276,14 @@ var AppComponent = (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__single_survey_single_survey_component__ = __webpack_require__("../../../../../src/app/single-survey/single-survey.component.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__nav_nav_component__ = __webpack_require__("../../../../../src/app/nav/nav.component.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__home_home_component__ = __webpack_require__("../../../../../src/app/home/home.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_18__user_page_user_page_component__ = __webpack_require__("../../../../../src/app/user-page/user-page.component.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
+
 
 
 
@@ -308,7 +317,8 @@ var AppModule = (function () {
                 __WEBPACK_IMPORTED_MODULE_15__single_survey_single_survey_component__["a" /* SingleSurveyComponent */],
                 __WEBPACK_IMPORTED_MODULE_16__nav_nav_component__["a" /* NavComponent */],
                 __WEBPACK_IMPORTED_MODULE_17__home_home_component__["a" /* HomeComponent */],
-                __WEBPACK_IMPORTED_MODULE_6__titleize_pipe__["a" /* TitleizePipe */]
+                __WEBPACK_IMPORTED_MODULE_6__titleize_pipe__["a" /* TitleizePipe */],
+                __WEBPACK_IMPORTED_MODULE_18__user_page_user_page_component__["a" /* UserPageComponent */]
             ],
             imports: [
                 __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser__["a" /* BrowserModule */],
@@ -397,7 +407,7 @@ exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-b
 
 
 // module
-exports.push([module.i, "#home_intro {\n    display: inline-block;\n    width: 75%;\n}\n\n#home_check {\n    display: inline-block;\n    width: auto;\n}\n\n#welcome {\n    margin-bottom: 20px;\n    position:relative;\n    bottom:23px;\n    border-bottom: solid 1px #4e7837;\n    padding-bottom: 30px;\n}\n\n#home_intro h1 {\n    margin-bottom: 15px;\n}\n\n#home_bottom {\n    position: relative;\n    left: 8%;\n}\n", ""]);
+exports.push([module.i, "#home_intro {\n    display: inline-block;\n    width: 75%;\n}\n\n#home_check {\n    display: inline-block;\n    width: auto;\n}\n\n#welcome {\n    margin-bottom: 20px;\n    position:relative;\n    bottom:23px;\n    border-bottom: solid 1px #4e7837;\n    padding-bottom: 30px;\n}\n\n#home_intro h1 {\n    margin-bottom: 15px;\n}\n\n#home_bottom {\n    position: relative;\n    left: 7%;\n}\n", ""]);
 
 // exports
 
@@ -410,7 +420,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/home/home.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div class='padding_4p center_80'>\n    <div id='welcome'>\n        <img id='home_check' src='assets/img/home_check.png'/>\n        <div id='home_intro'>\n            <h1>Welcome to Mini-Surveys!</h1>\n            <p>Welcome to Two-Tires, a simple bicycle resale website coded and designed from scratch by Nicholas Chicirda. This site uses MEAN. To see the rest of Nick’s work and information go to <a href='http://www.nickchic.com'>nickchic.com</a>. Git Repo for this site can be seen <a href='https://github.com/nickchic/Two_Tires'>here</a>.</p>\n        </div>\n    </div>\n    <div id='home_bottom'>\n        <app-register id='home_reg'></app-register>\n        <app-login id='home_login'></app-login>\n    </div>\n\n</div>\n"
+module.exports = "<div class='padding_4p center_80'>\n    <div id='welcome'>\n        <img id='home_check' src='assets/img/home_check.png'/>\n        <div id='home_intro'>\n            <h1>Welcome to Mini-Surveys!</h1>\n            <p>Welcome to Mini-Surveys, a user-generated survey website coded and designed from scratch by Nicholas Chicirda. This site uses MEAN. To see the rest of Nick’s work and information go to <a href='http://www.nickchic.com'>nickchic.com</a>. Git Repo for this site can be seen <a href='https://github.com/nickchic/Mini_Surveys'>here</a>.</p>\n        </div>\n    </div>\n    <div id='home_bottom'>\n        <app-register id='home_reg'></app-register>\n        <app-login id='home_login'></app-login>\n    </div>\n\n</div>\n"
 
 /***/ }),
 
@@ -550,7 +560,7 @@ exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-b
 
 
 // module
-exports.push([module.i, "#nav {\n    width:1000px;\n    margin: 0 auto;\n}\n\n#nav-container {\n    background-color: #ffffff;\n    border-bottom: solid 5px #8dc63f;\n    width:100%;\n    height: 135px;\n    padding: 0;\n    margin: 0 auto;\n}\n\n#links {\n    display: inline-block;\n    vertical-align: middle;\n    position: relative;\n    bottom: 39px;\n    margin-left:60%;\n}\n\n#links a{\n    font-family: 'HelveticaNeueLTStd-Lt', Helvetica, sans-serif;\n    color: black;\n    text-decoration: none;\n    font-size: 1.1em;\n    margin-right: 30px;\n}\n\n#logo {\n    margin-top: 20px;\n}\n", ""]);
+exports.push([module.i, "#nav {\n    width:1000px;\n    margin: 0 auto;\n}\n\n#nav-container {\n    background-color: #ffffff;\n    border-bottom: solid 5px #8dc63f;\n    width:100%;\n    height: 135px;\n    padding: 0;\n    margin: 0 auto;\n}\n\n#links {\n    display: inline-block;\n    vertical-align: middle;\n    position: relative;\n    bottom: 39px;\n    margin-left:50%;\n    text-align: right;\n    width:50%;\n}\n\n#links a{\n    font-family: 'HelveticaNeueLTStd-Lt', Helvetica, sans-serif;\n    color: black;\n    text-decoration: none;\n    font-size: 1.1em;\n    margin-right: 30px;\n}\n\n#logo {\n    margin-top: 20px;\n}\n", ""]);
 
 // exports
 
@@ -563,7 +573,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/nav/nav.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div id=\"nav-container\">\n    <div id='nav'>\n        <a [routerLink]=\"['']\"><img id='logo' src='assets/img/mini_survey_logo.png' alt='logo'/></a>\n        <div id='links'>\n            <a *ngIf='!_userService.logged_in()' [routerLink]=\"['login']\">Login</a>\n            <a *ngIf='!_userService.logged_in()' [routerLink]=\"['reg']\">Register</a>\n            <a *ngIf='_userService.logged_in()' (click)='logout()' [routerLink]=\"['']\">Log Out</a>\n            <a [routerLink]=\"['new']\">New Survey</a>\n            <a [routerLink]=\"['surveys']\">Surveys</a>\n        </div>\n    </div>\n\n</div>\n"
+module.exports = "<div id=\"nav-container\">\n    <div id='nav'>\n        <a [routerLink]=\"['']\"><img id='logo' src='assets/img/mini_survey_logo.png' alt='logo'/></a>\n        <div id='links'>\n            <a *ngIf='!_userService.logged_in()' [routerLink]=\"['login']\">Login</a>\n            <a *ngIf='!_userService.logged_in()' [routerLink]=\"['reg']\">Register</a>\n            <a *ngIf='_userService.logged_in()' (click)='logout()' [routerLink]=\"['']\">Log Out</a>\n            <a *ngIf='_userService.logged_in()' [routerLink]=\"['new']\">Add Survey</a>\n            <a *ngIf='_userService.logged_in()' [routerLink]=\"['my_surveys']\">My Surveys</a>\n            <a [routerLink]=\"['surveys']\">Surveys</a>\n        </div>\n    </div>\n\n</div>\n"
 
 /***/ }),
 
@@ -631,7 +641,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/new-survey/new-survey.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div class='padding_4p' id='new_form'>\n    <div *ngIf='_userService.logged_in()'>\n        <h2 class='form_header'>Create a Survey</h2>\n        <form (submit)='newSurvey($event)' #surveyForm='ngForm'>\n            <div class='single_input_wrap'>\n                <p class='input_title'>Question</p>\n                <input type=\"text\" name=\"question\" [(ngModel)]='survey.question' #question='ngModel' required minlength='8'>\n                <div class='error' *ngIf='question.errors'>\n                    <p *ngIf='question.errors.minlength'>Needs to be at least 8 Characters.</p>\n                </div>\n            </div>\n            <div *ngFor='let option of survey.options; let idx = index'>\n                <form>\n                    <div class='single_input_wrap'>\n                        <p class='input_title'>Option {{idx+1}}</p>\n                        <input type=\"text\" name='option_{{idx}}' [(ngModel)]='survey.options[idx].option' [(value)]=\"survey.options[idx].option\" #option='ngModel' required minlength='2'>\n                        <button class='delete_button' (click)='deleteOption($event, idx)' *ngIf='survey.options.length > 2'>Delete Option {{idx+1}}</button>\n                        <div class='error' *ngIf='option.errors'>\n                            <p *ngIf='option.errors.minlength'>Needs to be at least 2 Characters.</p>\n                        </div>\n                    </div>\n                </form>\n            </div>\n            <button (click)='addOption($event)'>Add Option</button>\n            <input type='submit' [ngClass]=\"{'disabled_button': !surveyForm.form.valid, 'enabled_button' : surveyForm.form.valid}\" [disabled]='!surveyForm.form.valid'/>\n          </form>\n    </div>\n    <div *ngIf='!_userService.logged_in()'>\n      <p>Log in to add a survey!</p>\n    </div>\n</div>\n"
+module.exports = "<div class='padding_4p' id='new_form'>\n    <div *ngIf='_userService.logged_in()'>\n        <h2 class='form_header'>Create a Survey</h2>\n        <form (submit)='newSurvey($event)' #surveyForm='ngForm'>\n            <div class='single_input_wrap'>\n                <p class='input_title'>Question</p>\n                <input type=\"text\" name=\"question\" [(ngModel)]='survey.question' #question='ngModel' required minlength='8'>\n                <div class='error' *ngIf='question.errors'>\n                    <p *ngIf='question.errors.minlength'>Needs to be at least 8 Characters.</p>\n                </div>\n            </div>\n            <div *ngFor='let option of survey.options; let idx = index'>\n                <form>\n                    <div class='single_input_wrap'>\n                        <p class='input_title'>Option {{idx+1}}</p>\n                        <input type=\"text\" name='option_{{idx}}' [(ngModel)]='survey.options[idx].option' [(value)]=\"survey.options[idx].option\" #option='ngModel' required minlength='2'>\n                        <button class='delete_button' (click)='deleteOption($event, idx)' *ngIf='survey.options.length > 2'>Delete Option {{idx+1}}</button>\n                        <div class='error' *ngIf='option.errors'>\n                            <p *ngIf='option.errors.minlength'>Needs to be at least 2 Characters.</p>\n                        </div>\n                    </div>\n                </form>\n            </div>\n            <button (click)='addOption($event)'>Add Option</button>\n            <input type='submit' [ngClass]=\"{'disabled_button': !surveyForm.form.valid, 'enabled_button' : surveyForm.form.valid}\" [disabled]='!surveyForm.form.valid'/>\n          </form>\n    </div>\n</div>\n"
 
 /***/ }),
 
@@ -671,6 +681,9 @@ var NewSurveyComponent = (function () {
         this.survey = new __WEBPACK_IMPORTED_MODULE_1__survey__["a" /* Survey */]();
     }
     NewSurveyComponent.prototype.ngOnInit = function () {
+        if (!this._userService.logged_in()) {
+            this.router.navigateByUrl('/');
+        }
     };
     NewSurveyComponent.prototype.newSurvey = function (event) {
         var _this = this;
@@ -793,7 +806,11 @@ var RegisterComponent = (function () {
         this.user.password = this.password;
         this._userService.register(this.user).subscribe(function (user) {
             console.log('in subscribe user');
-            _this._userService.login(user);
+            if (_this._userService.logged_in()) {
+                _this._userService.logout();
+            }
+            ;
+            _this._userService.login_success(user);
         }, function (errorResponse) {
             console.log('in subscribe email');
             _this.emailError = errorResponse.json();
@@ -1080,6 +1097,91 @@ var TitleizePipe = (function () {
     ], TitleizePipe);
     return TitleizePipe;
     var TitleizePipe_1;
+}());
+
+
+
+/***/ }),
+
+/***/ "../../../../../src/app/user-page/user-page.component.css":
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-base.js")(false);
+// imports
+
+
+// module
+exports.push([module.i, ".survey {\n  padding: 0 10px 35px;\n  margin-bottom: 40px;\n}\n\n.bottom_line{\n     border-bottom: solid 1px #4e7837;\n}\n\n .title a{\n    text-decoration: none;\n    color: #4e7837;\n }\n\n.option {\n    display: inline-block;\n    padding-right: 10%;\n    font-size: 1.2em;\n}\n\n.options_container{\n    margin: 10px 0 7px;\n}\n\n.vote_see {\n    width: 25%;\n    margin: 10px auto 0;\n    text-align: center;\n}\n\n.info {\n    font-size: 0.8em;\n}\n\n#user_header {\n    margin-bottom: 20px;\n    padding: 0 10px 10px;\n}\n\n#user_header h1 {\n    margin-bottom: 5px;\n}\n", ""]);
+
+// exports
+
+
+/*** EXPORTS FROM exports-loader ***/
+module.exports = module.exports.toString();
+
+/***/ }),
+
+/***/ "../../../../../src/app/user-page/user-page.component.html":
+/***/ (function(module, exports) {
+
+module.exports = "<div class='padding_4p'>\n    <div id='user_header'>\n        <h1 >{{ user.first_name }} {{ user.last_name }}'s Surveys</h1>\n        <a [routerLink]=\"['new']\">Add a New Survey</a>\n    </div>\n    <div *ngFor='let survey of user.surveys; let idx = index' class='survey' [ngClass]=\"{'bottom_line': idx < user.surveys.length-1}\">\n        <h2 class='title'><a [routerLink]=\"[ survey._id ]\">{{ survey.question }}</a></h2>\n        <p class='info'>{{ survey.createdAt | date }}</p>\n        <div class='options_container'>\n            <p *ngFor='let option of survey.options' class='option'>\n                {{ option.option }} - {{ option.votes }}\n            </p>\n        </div>\n        <button (click)='delete(survey)'>Delete!</button>\n    </div>\n</div>\n"
+
+/***/ }),
+
+/***/ "../../../../../src/app/user-page/user-page.component.ts":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return UserPageComponent; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/esm5/core.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__survey_service__ = __webpack_require__("../../../../../src/app/survey.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__user_service__ = __webpack_require__("../../../../../src/app/user.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__angular_router__ = __webpack_require__("../../../router/esm5/router.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_rxjs_add_operator_catch__ = __webpack_require__("../../../../rxjs/_esm5/add/operator/catch.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_rxjs_add_operator_map__ = __webpack_require__("../../../../rxjs/_esm5/add/operator/map.js");
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+
+
+
+var UserPageComponent = (function () {
+    function UserPageComponent(_surveyService, _userService, router) {
+        this._surveyService = _surveyService;
+        this._userService = _userService;
+        this.router = router;
+    }
+    UserPageComponent.prototype.ngOnInit = function () {
+        var _this = this;
+        if (!this._userService.logged_in()) {
+            this.router.navigateByUrl('/');
+        }
+        else {
+            console.log('in there');
+            this._userService.getUserStored()
+                .subscribe(function (user) {
+                _this.user = user;
+            }, function (errorResponse) { return console.log(errorResponse.json()); });
+        }
+    };
+    UserPageComponent = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
+            selector: 'app-user-page',
+            template: __webpack_require__("../../../../../src/app/user-page/user-page.component.html"),
+            styles: [__webpack_require__("../../../../../src/app/user-page/user-page.component.css")]
+        }),
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__survey_service__["a" /* SurveyService */], __WEBPACK_IMPORTED_MODULE_2__user_service__["a" /* UserService */], __WEBPACK_IMPORTED_MODULE_3__angular_router__["b" /* Router */]])
+    ], UserPageComponent);
+    return UserPageComponent;
 }());
 
 

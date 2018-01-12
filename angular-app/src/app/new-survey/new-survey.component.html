@@ -25,7 +25,4 @@
             <input type='submit' [ngClass]="{'disabled_button': !surveyForm.form.valid, 'enabled_button' : surveyForm.form.valid}" [disabled]='!surveyForm.form.valid'/>
           </form>
     </div>
-    <div *ngIf='!_userService.logged_in()'>
-      <p>Log in to add a survey!</p>
-    </div>
 </div>

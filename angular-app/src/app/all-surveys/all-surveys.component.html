@@ -1,5 +1,5 @@
 <div class='padding_4p'>
-    <div *ngFor='let survey of all_surveys' class='survey'>
+    <div *ngFor='let survey of all_surveys; let idx = index' class='survey' [ngClass]="{'bottom_line': idx < all_surveys.length-1}">
         <h1 class='title'><a [routerLink]="[ survey._id ]">{{ survey.question }}</a></h1>
         <p class='info'>Posted by: {{ survey.user.first_name }} {{ survey.user.last_name }} - {{ survey.createdAt | date }}</p>
         <div class='options_container'>

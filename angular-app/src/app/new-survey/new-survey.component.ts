@@ -21,7 +21,9 @@ export class NewSurveyComponent implements OnInit {
   constructor(private _surveyService: SurveyService, private _userService: UserService, private router: Router) { }
 
   ngOnInit() {
-
+      if(!this._userService.logged_in()){
+          this.router.navigateByUrl('/');
+      }
   }
 
 

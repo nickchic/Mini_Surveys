@@ -20,6 +20,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { SingleSurveyComponent } from './single-survey/single-survey.component';
 import { NavComponent } from './nav/nav.component';
 import { HomeComponent } from './home/home.component';
+import { UserPageComponent } from './user-page/user-page.component';
 
 
 @NgModule({
@@ -33,7 +34,8 @@ import { HomeComponent } from './home/home.component';
     SingleSurveyComponent,
     NavComponent,
     HomeComponent,
-    TitleizePipe
+    TitleizePipe,
+    UserPageComponent
   ],
   imports: [
     BrowserModule,

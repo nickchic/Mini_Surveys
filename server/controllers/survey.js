@@ -1,5 +1,6 @@
 var mongoose = require('mongoose');
 var Survey = mongoose.model('Survey');
+var User = mongoose.model('User');
 
 module.exports = {
     index: (request, response) => {
@@ -11,10 +12,15 @@ module.exports = {
     },
     create: (request, response) => {
         let new_survey = request.body;
-        console.log(new_survey);
+        console.log('user inside survey create', request.body.user);
         Survey.create(new_survey)
             .then( survey => {
-                response.json(survey);
+                return User.findById(request.body.user._id)
+                    .then((user)=> {
+                        user.surveys.push(survey);
+                        user.save();
+                        response.json(survey);
+                    })
                 console.log('new survey!', survey);
             })
             .catch(error => {

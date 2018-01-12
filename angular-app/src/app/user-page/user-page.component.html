@@ -1,0 +1,16 @@
+<div class='padding_4p'>
+    <div id='user_header'>
+        <h1 >{{ user.first_name }} {{ user.last_name }}'s Surveys</h1>
+        <a [routerLink]="['new']">Add a New Survey</a>
+    </div>
+    <div *ngFor='let survey of user.surveys; let idx = index' class='survey' [ngClass]="{'bottom_line': idx < user.surveys.length-1}">
+        <h2 class='title'><a [routerLink]="[ survey._id ]">{{ survey.question }}</a></h2>
+        <p class='info'>{{ survey.createdAt | date }}</p>
+        <div class='options_container'>
+            <p *ngFor='let option of survey.options' class='option'>
+                {{ option.option }} - {{ option.votes }}
+            </p>
+        </div>
+        <button (click)='delete(survey)'>Delete!</button>
+    </div>
+</div>
