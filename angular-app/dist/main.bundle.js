@@ -1124,7 +1124,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/user-page/user-page.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div class='padding_4p'>\n    <div id='user_header'>\n        <h1 >{{ user.first_name }} {{ user.last_name }}'s Surveys</h1>\n        <a [routerLink]=\"['new']\">Add a New Survey</a>\n    </div>\n    <div *ngFor='let survey of user.surveys; let idx = index' class='survey' [ngClass]=\"{'bottom_line': idx < user.surveys.length-1}\">\n        <h2 class='title'><a [routerLink]=\"[ survey._id ]\">{{ survey.question }}</a></h2>\n        <p class='info'>{{ survey.createdAt | date }}</p>\n        <div class='options_container'>\n            <p *ngFor='let option of survey.options' class='option'>\n                {{ option.option }} - {{ option.votes }}\n            </p>\n        </div>\n        <button (click)='delete(survey)'>Delete!</button>\n    </div>\n</div>\n"
+module.exports = "<div class='padding_4p'>\n    <div id='user_header'>\n        <h1 >{{ user.first_name }} {{ user.last_name }}'s Surveys</h1>\n        <a [routerLink]=\"['/new']\">Add a New Survey</a>\n    </div>\n    <div *ngFor='let survey of user.surveys; let idx = index' class='survey' [ngClass]=\"{'bottom_line': idx < user.surveys.length-1}\">\n        <h2 class='title'><a [routerLink]=\"[ survey._id ]\">{{ survey.question }}</a></h2>\n        <p class='info'>{{ survey.createdAt | date }}</p>\n        <div class='options_container'>\n            <p *ngFor='let option of survey.options' class='option'>\n                {{ option.option }} - {{ option.votes }}\n            </p>\n        </div>\n        <button (click)='delete(survey)'>Delete!</button>\n    </div>\n</div>\n"
 
 /***/ }),
 
