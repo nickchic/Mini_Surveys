@@ -4,7 +4,7 @@
   "description": "belt exam",
   "main": "server.js",
   "dependencies": {
-    "bcrypt": "^1.0.3",
+    "bcrypt-nodejs": "0.0.3",
     "body-parser": "^1.18.2",
     "cookie-parser": "^1.4.3",
     "express": "^4.16.2",

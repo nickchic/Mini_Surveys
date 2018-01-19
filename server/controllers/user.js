@@ -1,6 +1,6 @@
 var mongoose = require('mongoose');
 var User = mongoose.model('User');
-var bcrypt = require('bcrypt');
+var bcrypt = require('bcrypt-nodejs');
 
 function completeLogin(request, response, user) {
     console.log('complete login');
@@ -11,7 +11,7 @@ function completeLogin(request, response, user) {
     response.cookie('userID', user._id.toString());
     response.cookie('expiration', Date.now() + 86400 * 1000);
     console.log('now', Date.now());
-    console.log('later', Date.now() + 86400 * 1000);
+    console.log('later', Date.now() + 24 * 60 * 60 * 1000);
 
     response.json(user);
 }
