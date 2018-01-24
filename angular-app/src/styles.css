@@ -63,7 +63,6 @@ body, app-root, router-outlet  {
 @font-face {
   font-family: 'HelveticaNeueLTStd-Lt';
   src:
-      local('Helvetica Neue LT Std'),
       local('HelveticaNeueLTStd-Lt.otf'),
       url('./assets/fonts/HelveticaNeueLTStd-Lt.otf');
 }
@@ -71,7 +70,6 @@ body, app-root, router-outlet  {
 @font-face {
   font-family: 'AGaramondPro-Bold';
   src:
-  	local('Adobe Garamond Pro'),
   	local('AGaramondPro-Bold.otf'),
   	url('./assets/fonts/AGaramondPro-Bold.otf');
 }
@@ -79,7 +77,6 @@ body, app-root, router-outlet  {
 @font-face {
   font-family: 'AGaramondPro-Regular';
   src:
-  	local('Adobe Garamond Pro'),
   	local('AGaramondPro-Regular.otf'),
   	url('./assets/fonts/AGaramondPro-Regular.otf');
 }
